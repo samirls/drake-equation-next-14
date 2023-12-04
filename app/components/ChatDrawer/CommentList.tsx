@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react";
 
 interface Comment {
   id: string;
-  title: string;
+  name: string;
+  comment: string;
 }
 
 interface CommentListProps {

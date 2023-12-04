@@ -18,9 +18,10 @@ interface ChatDrawerProps {
   onClose: () => void;
 }
 
-interface Book {
+interface Comment {
   id: string;
-  title: string;
+  name: string;
+  comment: string;
 }
 
 const ChatDrawer = ({ isOpen, onClose }:ChatDrawerProps) => {

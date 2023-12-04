@@ -8,7 +8,7 @@ import InputWithFloatingLabel from "./InputWithFloatingLabel";
 
 
 interface CreateCommentProps {
-  onCreate: (title: string) => void;
+  onCreate: (name: string, comment: string) => void;
 }
 
 function CreateComment({ onCreate }: CreateCommentProps) {
