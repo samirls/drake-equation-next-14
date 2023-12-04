@@ -1,95 +1,152 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
 
-export default function Home() {
+import React, { useState, useEffect } from "react";
+import Begin from "./components/Begin/Begin";
+import {
+  Box,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
+import { theme } from "./styles/theme";
+import SizeOfUniverse from "./components/SizeOfUniverse/SizeOfUniverse";
+import "animate.css";
+import DrakeEquation from "./components/DrakeEquation/DrakeEquation";
+import DrakeCalculator from "./components/DrakeCalculator/DrakeCalculator";
+import Controls from "./components/Controls/Controls";
+import { FaGear } from "react-icons/fa6";
+import { BsFillChatLeftTextFill } from "react-icons/bs";
+import useStore from "./stores/store";
+import Options from "./components/Options/Options";
+import styles from "./page.module.css";
+import ChatDrawer from "./components/ChatDrawer/ChatDrawer";
+
+function App() {
+  const [switchChange, setSwitchChange] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [startTour, setStartTour] = useState(false);
+  const [options, setOptions] = useState(false);
+  const [rememberChanges, setRememberChanges] = useState(false);
+  const switchPosition = useStore((state) => state.switchPosition);
+  const setSwitchPosition = useStore((state) => state.setSwitchPosition);
+  const tour = useStore((state) => state.tour);
+  const setTour = useStore((state) => state.setTour);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < 4) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    const storedRememberChanges = localStorage.getItem(
+      "DrakeEquationRememberChanges"
+    );
+    const storedSwitchPosition = localStorage.getItem(
+      "DrakeEquationSwitchPosition"
+    );
+    const storedDisableTour = localStorage.getItem("DrakeEquationTour");
+    if (storedRememberChanges === "true") {
+      setRememberChanges(true);
+    }
+    if (storedSwitchPosition !== null) {
+      setSwitchPosition(Number(storedSwitchPosition));
+    }
+    if (storedSwitchPosition === "2") {
+      setSwitchChange(true);
+    }
+    if (storedDisableTour === "false") {
+      setTour(false);
+    }
+  }, []);
+
+  setTimeout(() => {
+    setStartTour(true);
+  }, 1500);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <ChakraProvider theme={theme}>
+      <Box className={styles.App}>
+        {currentPage === 1 && <Begin goToNextPage={goToNextPage} />}
+        {currentPage === 2 && (
+          <SizeOfUniverse goToNextPage={goToNextPage} tour={tour} />
+        )}
+        {currentPage === 3 && (
+          <DrakeEquation goToNextPage={goToNextPage} tour={tour} />
+        )}
+        {currentPage === 4 && <DrakeCalculator tour={tour} />}
+        {options === true ? (
+          <>
+            <Options
+              switchPosition={switchPosition}
+              tour={tour}
+              setOptions={setOptions}
+              setStartTour={setStartTour}
+              switchChange={switchChange}
+              setSwitchChange={setSwitchChange}
+              rememberChanges={rememberChanges}
+              setRememberChanges={setRememberChanges}
             />
-          </a>
-        </div>
-      </div>
+          </>
+        ) : (
+          <>
+            <Box
+              position="absolute"
+              top={{ base: "50%", lg: "5" }}
+              right={{ base: "1", lg: "5" }}
+              flexDir="column"
+              cursor="pointer"
+              fontSize="25px"
+              onClick={() => setOptions(true)}
+              className={
+                options === false ? "animate__animated animate__fadeIn" : ""
+              }
+              id="step1"
+            >
+              <FaGear />
+            </Box>
+            <Box
+              position="absolute"
+              top={{ base: "40%", lg: "5" }}
+              right={{ base: "1", lg: "90" }}
+              flexDir="column"
+              cursor="pointer"
+              fontSize="25px"
+              onClick={onOpen}
+              className={
+                options === false ? "animate__animated animate__fadeIn" : ""
+              }
+              id="step1"
+            >
+              <BsFillChatLeftTextFill />
+            </Box>
+            <ChatDrawer isOpen={isOpen} onClose={onClose}/>
+          </>
+        )}
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+        {switchChange && (
+          <Controls
+            goToPreviousPage={goToPreviousPage}
+            goToNextPage={goToNextPage}
+            switchPosition={switchPosition}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        )}
+      </Box>
+    </ChakraProvider>
+  );
 }
+
+export default App;

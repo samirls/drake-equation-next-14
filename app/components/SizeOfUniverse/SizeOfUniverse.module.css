@@ -1,0 +1,40 @@
+.swiper {
+  width: 300px;
+  height: 300px;
+  cursor: pointer;
+}
+
+.swiper_slide {
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.linkHover:hover{
+  color: rgb(137, 165, 244);
+}
+.chevronContainer{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  color: rgba(34, 21, 214, 0.73);
+  font-size: 4rem;
+  cursor: pointer;
+}
+.chevronLeft{
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+.chevronRight{
+  position: absolute;
+  top: 50%;
+  right: 0;
+}
+.chevronLeft:hover{
+  color: rgba(255, 255, 255, 0.131);
+}
+.chevronRight:hover{
+  color: rgba(255, 255, 255, 0.131);
+}
