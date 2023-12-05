@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react";
 import {
   Box,
@@ -7,7 +9,6 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
-  Input,
 } from "@chakra-ui/react";
 import CreateComment from "./CreateComment";
 import { v4 as uuidv4 } from 'uuid';
