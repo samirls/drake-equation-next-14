@@ -15,7 +15,6 @@ import { BsFillChatLeftTextFill } from "react-icons/bs";
 import useStore from "@/app/stores/store";
 import Options from "@/app/components/Options/Options";
 import styles from "./preBegin.module.css";
-import ChatDrawer from "../ChatDrawer/ChatDrawer";
 import Link from "next/link";
 
 function PreBegin() {
@@ -127,7 +126,6 @@ function PreBegin() {
                 <BsFillChatLeftTextFill />
               </Box>
             </Link>
-            <ChatDrawer isOpen={isOpen} onClose={onClose} />
           </>
         )}
 

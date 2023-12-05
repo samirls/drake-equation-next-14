@@ -56,11 +56,12 @@ function InputWithFloatingLabel() {
     <ChakraProvider theme={theme}>
       <Box p={2} display="flex" flexDir="column" gap={5}>
         <FormControl variant="floating" id="first-name">
-          <Input placeholder="John"  bg='blackAlpha.500'/>
+          <Input name="name" placeholder="John"  bg='blackAlpha.500'/>
           <FormLabel>Your Name</FormLabel>
         </FormControl>
         <FormControl variant="floating" id="first-name">
           <Textarea
+            name="comment"
             placeholder="Your comment"
             bg='blackAlpha.500'
           />
