@@ -1,21 +1,10 @@
 "use server";
-import { z } from "zod";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 
-const FormSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  comment: z.string(),
-});
-
-const CreateComment = FormSchema.omit({ id: true });
-
-export async function createComment(formData: FormData) {
-  const { name, comment } = CreateComment.parse({
-    name: formData.get("name"),
-    comment: formData.get("comment"),
-  });
+export async function createComment(formData: {name:string, comment:string}) {
+  //throw new Error('Failed on purpose');
+  const {name, comment} = formData;
 
   try {
     await sql`

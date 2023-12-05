@@ -29,7 +29,7 @@ async function page() {
         <Link href={"/"}>
           <Box
             fontSize="1.8rem"
-            pr="25px"
+            pr={{base: '5px', lg:"35px"}}
             cursor="pointer"
             _hover={{ color: "gray.300" }}
           >

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   ChakraProvider,
@@ -50,22 +50,34 @@ export const theme = extendTheme({
   },
 });
 
+interface InputWithFloatingLabelProps {
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  formLabel: string;
+  placeholder: string;
+  name: string;
+}
 
-function InputWithFloatingLabel() {
+function InputWithFloatingLabel({
+  onChange,
+  value,
+  formLabel,
+  placeholder,
+  name,
+}: InputWithFloatingLabelProps) {
   return (
     <ChakraProvider theme={theme}>
       <Box p={2} display="flex" flexDir="column" gap={5}>
         <FormControl variant="floating" id="first-name">
-          <Input name="name" placeholder="John"  bg='blackAlpha.500'/>
-          <FormLabel>Your Name</FormLabel>
-        </FormControl>
-        <FormControl variant="floating" id="first-name">
-          <Textarea
-            name="comment"
-            placeholder="Your comment"
-            bg='blackAlpha.500'
+          <Input
+            name={name}
+            value={value}
+            placeholder={placeholder}
+            onChange={onChange}
+            required
+            bg="blackAlpha.500"
           />
-          <FormLabel>Write some cool stuff here</FormLabel>
+          <FormLabel>{formLabel}</FormLabel>
         </FormControl>
       </Box>
     </ChakraProvider>
