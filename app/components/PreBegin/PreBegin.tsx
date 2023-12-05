@@ -1,11 +1,8 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Begin from "../Begin/Begin";
-import {
-  Box,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, useDisclosure } from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { theme } from "../../styles/theme";
 import SizeOfUniverse from "../SizeOfUniverse/SizeOfUniverse";
@@ -19,6 +16,7 @@ import useStore from "@/app/stores/store";
 import Options from "@/app/components/Options/Options";
 import styles from "./preBegin.module.css";
 import ChatDrawer from "../ChatDrawer/ChatDrawer";
+import Link from "next/link";
 
 function PreBegin() {
   const [switchChange, setSwitchChange] = useState(false);
@@ -108,25 +106,28 @@ function PreBegin() {
                 options === false ? "animate__animated animate__fadeIn" : ""
               }
               id="step1"
+              _hover={{ color: "gray.300" }}
             >
               <FaGear />
             </Box>
-            <Box
-              position="absolute"
-              top={{ base: "40%", lg: "5" }}
-              right={{ base: "1", lg: "90" }}
-              flexDir="column"
-              cursor="pointer"
-              fontSize="25px"
-              onClick={onOpen}
-              className={
-                options === false ? "animate__animated animate__fadeIn" : ""
-              }
-              id="step1"
-            >
-              <BsFillChatLeftTextFill />
-            </Box>
-            <ChatDrawer isOpen={isOpen} onClose={onClose}/>
+            <Link href="/chat">
+              <Box
+                position="absolute"
+                top={{ base: "40%", lg: "5" }}
+                right={{ base: "1", lg: "90" }}
+                flexDir="column"
+                cursor="pointer"
+                fontSize="25px"
+                className={
+                  options === false ? "animate__animated animate__fadeIn" : ""
+                }
+                id="step1"
+                _hover={{ color: "gray.300" }}
+              >
+                <BsFillChatLeftTextFill />
+              </Box>
+            </Link>
+            <ChatDrawer isOpen={isOpen} onClose={onClose} />
           </>
         )}
 

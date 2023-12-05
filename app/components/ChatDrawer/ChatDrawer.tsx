@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Drawer,
@@ -13,6 +13,7 @@ import {
 import CreateComment from "./CreateComment";
 import { v4 as uuidv4 } from 'uuid';
 import CommentList from "./CommentList";
+
 
 interface ChatDrawerProps {
   isOpen: boolean;
@@ -33,6 +34,8 @@ const ChatDrawer = ({ isOpen, onClose }:ChatDrawerProps) => {
     const updatedComments: Comment[] = [...comments, { id: uuidv4(), name, comment }];
     setComments(updatedComments);
   };
+
+
 
   return (
     <Drawer placement={"left"} onClose={onClose} isOpen={isOpen} size={'xl'}>

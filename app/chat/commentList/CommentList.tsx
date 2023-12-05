@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import SingleComment from "./SingleComment";
 import { useEffect, useRef } from "react";
@@ -11,11 +13,10 @@ interface Comment {
 
 interface CommentListProps {
   comments: Comment[];
-  isOpen: boolean;
 }
 
 
-function CommentList({ comments, isOpen }: CommentListProps) {
+function CommentList({ comments }: CommentListProps) {
 
   const boxRef = useRef<HTMLDivElement>(null);
 
@@ -23,20 +24,20 @@ function CommentList({ comments, isOpen }: CommentListProps) {
     return <SingleComment key={comment.id} comment={comment} />;
   });
 
-  
-
 
   useEffect(() => {
     if (boxRef.current) {
       boxRef.current.scrollTop = boxRef.current.scrollHeight;
     }
-  }, [comments, isOpen]); 
+  }, [comments]); 
 
   return (
     <ChakraProvider>
       <Box
-        //ref={boxRef}
-        maxHeight="500px"
+        ref={boxRef}
+        mt='50px'
+        minHeight='50vh'
+        maxHeight="50vh"
         overflowY="auto"
         css={{
           "&::-webkit-scrollbar": {

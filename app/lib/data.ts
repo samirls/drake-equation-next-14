@@ -7,7 +7,7 @@ export async function fetchComments() {
 
   try {
 
-    const data = await sql`SELECT * FROM comments;`;
+    const data = await sql<Comments>`SELECT * FROM comments;`;
 
     return data.rows;
   } catch (error) {

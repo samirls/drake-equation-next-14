@@ -1,7 +1,9 @@
 import { fetchComments } from "@/app/lib/data";
 import { Box } from "@chakra-ui/react";
+import FetchClient from "./FetchClient";
 
-async function Fetch({}) {
+
+async function Fetch() {
 
   const fetchedComments = await fetchComments();
 
@@ -9,6 +11,7 @@ async function Fetch({}) {
 
   return (
     <Box>
+      <FetchClient fetchedComments={fetchedComments}/>
     </Box>
   )
 }

@@ -1,4 +1,3 @@
-import Fetch from "./lib/Fetch";
 import PreBegin from "./components/PreBegin/PreBegin";
 
 function App() {
@@ -6,7 +5,6 @@ function App() {
   return (
     <>
       <PreBegin/>
-      {/* <Fetch/> */}
     </>
   );
 }
