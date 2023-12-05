@@ -19,7 +19,6 @@ function SingleComment({comment}: SingleCommentProps) {
     <Box mb='10px'  borderRadius='9px' bg='rgba(111, 69, 153, 0.143)' padding='5px'>
       <Box fontWeight={600} color='white'>{comment.name}:</Box>
       <Box>{comment.comment}</Box>
-      <Fetch/>
     </Box>
   )
 }

@@ -9,8 +9,6 @@ import Link from "next/link";
 async function page() {
   const fetchedComments = await fetchComments();
 
-  console.log(fetchedComments);
-
   return (
     <Box
       className={styles.chat}
@@ -30,7 +28,7 @@ async function page() {
         </Box>
         <Link href={"/"}>
           <Box
-            fontSize="2rem"
+            fontSize="1.8rem"
             pr="25px"
             cursor="pointer"
             _hover={{ color: "gray.300" }}

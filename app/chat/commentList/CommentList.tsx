@@ -2,7 +2,7 @@
 
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import SingleComment from "./SingleComment";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 interface Comment {
