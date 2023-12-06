@@ -142,7 +142,7 @@ function PreBegin() {
                 _hover={{ color: "gray.300" }}
               >
                 <MdDevices  onClick={onOpen}/>
-                <Devices isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
+                <Devices isOpen={isOpen} onClose={onClose}/>
               </Box>
           </>
         )}

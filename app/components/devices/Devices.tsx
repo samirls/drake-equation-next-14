@@ -1,9 +1,12 @@
 import { Box, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, Image } from "@chakra-ui/react";
 import React from "react";
 
-function Devices({onClose, isOpen}) {
+interface devicesProps {
+  onClose: () => void;
+  isOpen: boolean;
+}
 
-
+function Devices({onClose, isOpen}:devicesProps) {
 
   return (
     <Box>
