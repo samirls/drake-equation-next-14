@@ -12,10 +12,12 @@ import DrakeCalculator from "../DrakeCalculator/DrakeCalculator";
 import Controls from "../Controls/Controls";
 import { FaGear } from "react-icons/fa6";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
+import { MdDevices } from "react-icons/md";
 import useStore from "@/app/stores/store";
 import Options from "@/app/components/Options/Options";
 import styles from "./preBegin.module.css";
 import Link from "next/link";
+import Devices from "../devices/Devices";
 
 function PreBegin() {
   const [switchChange, setSwitchChange] = useState(false);
@@ -126,6 +128,22 @@ function PreBegin() {
                 <BsFillChatLeftTextFill />
               </Box>
             </Link>
+            <Box
+                position="absolute"
+                top={{ base: "40%", lg: "5" }}
+                right={{ base: "1", lg: "160" }}
+                flexDir="column"
+                cursor="pointer"
+                fontSize="25px"
+                className={
+                  options === false ? "animate__animated animate__fadeIn" : ""
+                }
+                id="step1"
+                _hover={{ color: "gray.300" }}
+              >
+                <MdDevices  onClick={onOpen}/>
+                <Devices isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
+              </Box>
           </>
         )}
 
