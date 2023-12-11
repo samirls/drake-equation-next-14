@@ -130,7 +130,7 @@ function PreBegin() {
             </Link>
             <Box
                 position="absolute"
-                top={{ base: "40%", lg: "5" }}
+                top={{ base: "30%", lg: "5" }}
                 right={{ base: "1", lg: "160" }}
                 flexDir="column"
                 cursor="pointer"
